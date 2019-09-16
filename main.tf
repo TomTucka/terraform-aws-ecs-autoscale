@@ -44,7 +44,7 @@ resource "aws_appautoscaling_policy" "scale_down" {
   }
 }
 
-resource "aws_cloudwatch_metric_alarm" "api_cpu_utilization_high" {
+resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
   alarm_name          = "${terraform.workspace}-${var.service_name}-cpu-high"
   alarm_description   = "${var.service_name} ECS Service CPU Utilization High. Managed By terraform"
   alarm_actions       = [aws_appautoscaling_policy.scale_up.arn]
@@ -57,7 +57,7 @@ resource "aws_cloudwatch_metric_alarm" "api_cpu_utilization_high" {
   threshold           = 80
 }
 
-resource "aws_cloudwatch_metric_alarm" "api_cpu_utilization_low" {
+resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
   alarm_name          = "${terraform.workspace}-${var.service_name}-cpu-low"
   alarm_description   = "${var.service_name} ECS Service CPU Utilization Low. Managed By terraform"
   alarm_actions       = [aws_appautoscaling_policy.scale_down.arn]
